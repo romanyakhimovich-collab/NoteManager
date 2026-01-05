@@ -96,3 +96,25 @@ fun loadNotes(): MutableList<Note> {
     }
     return list
 }
+fun main() {
+    val notes = loadNotes()
+    println("--- Notes Manager ---")
+    println("Notes uploaded: ${notes.size}")
+    while (true) {
+        printMenu()
+        val input = readlnOrNull()?.trim()
+        when (input) {
+            "1" -> addNote(notes)
+            "2" -> viewNotes(notes)
+            "3" -> toggleDone(notes)
+            "4" -> deleteNote(notes)
+            "0" -> {
+                SaveNotes(notes)
+                println("Bye! Notes saved successfully :) ")
+                break
+            }
+            else -> println("Invalid option")
+        }
+        println()
+    }
+}
